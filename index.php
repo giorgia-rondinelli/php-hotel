@@ -46,28 +46,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotels</title>
 </head>
 <body>
-  <h1> lista Hotel</h1>
-   <?php foreach($hotels as $hotel) :?>
-  <div >
-   
-    <h3><?php echo $hotel['name'] ?></h3>
-    <h4>Descrizione:<?php echo $hotel['description'] ?></h4>
-    <?php  if($hotel['parking']=== true):?>
-      <h4>Parcheggio:Sì </h4>
-      <?php else: ?>
-        <h4>Parcheggio:No </h4>
-    
-    <?php endif ?>
-    <h4> Voto:<?php echo $hotel['vote'] ?> </h4>
-    <h4>Distanza dal centro:<?php echo $hotel['distance_to_center']?> km</h4>
 
-
-    
+<div class="container text-center "><h1> lista Hotel</h1></div>
+<div class="container d-flex ">
+  <div class="row  ">
+    <div class="col d-flex flex-wrap ">
+      <?php foreach($hotels as $hotel) :?>
+      <div class="card m-2 " style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title"><?php echo $hotel['name'] ?></h5>
+              <p class="card-text">Descrizione:<?php echo $hotel['description'] ?></p>
+            </div>
+            <ul class="list-group list-group-flush">
+            <?php  if($hotel['parking']=== true):?>
+              <li class="list-group-item">Parcheggio: Sì</li>
+                <?php else: ?>
+                  <li class="list-group-item">Parcheggio: No</li>
+              
+              <?php endif ?>
+              
+              <li class="list-group-item">Voto:<?php echo $hotel['vote'] ?></li>
+              <li class="list-group-item">Distanza dal centro:<?php echo $hotel['distance_to_center']?> km</li>
+            </ul>
+        
+        
+      </div>
+      <?php endforeach ?> 
+    </div>
   </div>
-  <?php endforeach ?>
+</div>
+  
+ 
+
+   
+  
+  
 </body>
 </html>
