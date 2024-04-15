@@ -39,6 +39,8 @@
 
     ];
 
+$park= $_POST['park'];
+
 
 
 ?>
@@ -53,9 +55,26 @@
 <body>
 
 <div class="container text-center "><h1> lista Hotel</h1></div>
+
+<div class="container">
+  <form action="index.php" method="post">
+    <label for="">disponibilità parcheggio</label>
+    <select name="park" class="" aria-label="Default select example">
+
+      <option value="true">si</option>
+      <option value="false">no</option>
+
+    </select>
+    <button type="submit">Cerca</button>
+  </form>
+</div>
+
+
+
 <div class="container d-flex ">
   <div class="row  ">
     <div class="col d-flex flex-wrap ">
+     <?php  if (empty($park)): ?> 
       <?php foreach($hotels as $hotel) :?>
       <div class="card m-2 " style="width: 18rem;">
             <div class="card-body">
@@ -76,7 +95,76 @@
         
         
       </div>
-      <?php endforeach ?> 
+      <?php endforeach ?>
+
+
+      <?php elseif ($park==='true'):?>
+        <?php foreach($hotels as $hotel) :?>
+        <?php if ($hotel['parking']=== true) : ?>
+          <div class="card m-2 " style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title"><?php echo $hotel['name'] ?></h5>
+              <p class="card-text">Descrizione:<?php echo $hotel['description'] ?></p>
+            </div>
+            <ul class="list-group list-group-flush">
+            
+              <li class="list-group-item">Parcheggio: Sì</li>
+                
+              
+              <li class="list-group-item">Voto:<?php echo $hotel['vote'] ?></li>
+              <li class="list-group-item">Distanza dal centro:<?php echo $hotel['distance_to_center']?> km</li>
+            </ul>
+        
+        
+           </div>
+    
+      
+      <?php endif ?>
+      <?php endforeach ?>
+
+
+      <?php else:?>
+       <?php foreach($hotels as $hotel) :?>
+        <?php if ($hotel['parking']=== false) : ?>
+          <div class="card m-2 " style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title"><?php echo $hotel['name'] ?></h5>
+              <p class="card-text">Descrizione:<?php echo $hotel['description'] ?></p>
+            </div>
+            <ul class="list-group list-group-flush">
+            
+              <li class="list-group-item">Parcheggio: No</li>
+                
+              
+              <li class="list-group-item">Voto:<?php echo $hotel['vote'] ?></li>
+              <li class="list-group-item">Distanza dal centro:<?php echo $hotel['distance_to_center']?> km</li>
+            </ul>
+        
+        
+           </div>
+    
+      
+      <?php endif ?>
+      <?php endforeach ?>
+        
+
+      
+
+
+      <?php endif ?>
+      
+ 
+      
+  
+
+
+        
+      
+      
+        
+
+
+    
     </div>
   </div>
 </div>
